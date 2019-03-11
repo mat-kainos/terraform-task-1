@@ -15,7 +15,8 @@ locals {
   cidr_vpc = "10.99.0.0/16"
   cidr_sub_pub_1 = "10.99.0.0/24"
   cidr_sub_pub_2 = "10.99.1.0/24"
-  base_ami = "ami-0ff760d16d9497662"
+  cidr_sub_priv_1 = "10.99.2.0/24"
+  base_ami = "ami-054977cc9c9866832"
 }
 
 
