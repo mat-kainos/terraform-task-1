@@ -80,6 +80,7 @@ resource "aws_security_group_rule" "ssh-selfrule2" {
   security_group_id = "${aws_security_group.matorz-pub-2-sg.id}"
 }
 
+
 resource "aws_security_group_rule" "internet-exit2" {
   type        = "egress"
   from_port   = 0
@@ -87,4 +88,22 @@ resource "aws_security_group_rule" "internet-exit2" {
   protocol    = "-1"
   cidr_blocks = ["0.0.0.0/0"]
   security_group_id = "${aws_security_group.matorz-pub-2-sg.id}"
+}
+
+resource "aws_security_group_rule" "internet-exit-priv-1" {
+  type        = "egress"
+  from_port   = 0
+  to_port     = 0
+  protocol    = "-1"
+  cidr_blocks = ["0.0.0.0/0"]
+  security_group_id = "${aws_security_group.matorz-priv-1-sg.id}"
+}
+
+resource "aws_security_group_rule" "jenkins-http-rule" {
+  type        = "ingress"
+  from_port   = 8080
+  to_port     = 8080
+  protocol    = "tcp"
+  cidr_blocks = ["${local.cidr_sub_pub_1}", "${local.cidr_sub_pub_2}"]
+  security_group_id = "${aws_security_group.matorz-priv-1-sg.id}"
 }

@@ -8,7 +8,7 @@ resource "aws_launch_configuration" "as_conf" {
   key_name = "matorz-manual"
   security_groups = ["${aws_security_group.matorz-pub-1-sg.id}","${aws_security_group.matorz-pub-2-sg.id}"]
   associate_public_ip_address = true
-
+  #user_data = "${file("create-ssh.sh")}"
 }
 
 resource "aws_launch_configuration" "as_conf-priv" {
@@ -19,6 +19,7 @@ resource "aws_launch_configuration" "as_conf-priv" {
   key_name = "matorz-manual"
   security_groups = ["${aws_security_group.matorz-priv-1-sg.id}"]
   associate_public_ip_address = false
+  user_data = "${file("install-jenkins.sh")}"
 
 }
  resource "aws_autoscaling_group" "as" {

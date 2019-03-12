@@ -4,6 +4,11 @@ resource "aws_eip" "nat_gw_ip" {
     }
 }
 
+resource "aws_eip" "lb_ip" {
+    tags {
+        Name = "matorz-lb-ip"
+    }
+}
 resource "aws_internet_gateway" "gw" {
   vpc_id = "${aws_vpc.vpc.id}"
 
@@ -45,3 +50,4 @@ resource "aws_route_table" "rt-priv" {
     Name = "matorz-rt-priv"
   }
 }
+
